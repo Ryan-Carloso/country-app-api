@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, Image, Dimensions, ScrollView, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
-import useDarkOrWhiteTheme from './darkorwhite'; // Adjust the path as necessary
-import Ionicons from '@react-native-vector-icons/ionicons';
+import useThemeSwitcher from './useThemeSwitcher'; // Ajuste o caminho conforme necessário
+import styles from '../styles/HomeScreenStyles'
 import axios from 'axios';
 
-
-
 const HomeScreen = ({ navigation }) => {
-  const { currentTheme, toggleTheme } = useDarkOrWhiteTheme();
+  const { currentTheme, toggleTheme } = useThemeSwitcher();
 
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('alphabetical');
   const { width } = Dimensions.get('window');
   const maxContainerWidth = width * 0.8;
-  const numColumns = Math.max(2, Math.floor(maxContainerWidth / 200));
+  const numColumns = Math.max(1, Math.floor(maxContainerWidth / 200));
 
   useEffect(() => {
     axios.get('https://restcountries.com/v3.1/all')
@@ -44,7 +42,9 @@ const HomeScreen = ({ navigation }) => {
 
   const renderCountry = (item) => {
     return (
-      <TouchableOpacity key={item.cca3} onPress={() => navigation.navigate('CountryDetails', { country: item, allCountries: countries })}>
+      <TouchableOpacity 
+        key={item.cca3} 
+        onPress={() => navigation.navigate('CountryDetails', { country: item, allCountries: countries, currentTheme })}>
         <SafeAreaView style={[styles.countryCard, { width: maxContainerWidth / numColumns - 10, backgroundColor: currentTheme.backgroundColor }]}>
           <Image
             source={{ uri: item.flags.png }}
@@ -83,11 +83,10 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Search by country name"
         value={searchTerm}
         onChangeText={setSearchTerm}
+        placeholderTextColor={currentTheme.color}
       />
 
       <View style={styles.buttonContainer}>
-      <Ionicons name="phone" color="#ff0000" size={20} />
-
         <Button title="Sort Alphabetically" onPress={() => setSortOrder('alphabetical')} color={currentTheme.buttonBackground} />
         <Button title="Sort by Population" onPress={() => setSortOrder('population')} color={currentTheme.buttonBackground} />
         <Button title="Sort by Area" onPress={() => setSortOrder('area')} color={currentTheme.buttonBackground} />
@@ -99,73 +98,4 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingHorizontal: 10,
-    alignItems: 'center',
-  },
-  searchInput: {
-    height: 40,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    width: '100%',
-    maxWidth: 500,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 10,
-    width: '100%',
-    maxWidth: 500,
-  },
-  scrollViewContainer: {
-    alignItems: 'center',
-    width: '100%',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 10,
-  },
-  countryCard: {
-    backgroundColor: '#f9f9f9',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 10,
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  flag: {
-    width: '100%',
-    height: 100,
-    marginBottom: 10,
-  },
-  infoContainer: {
-    alignItems: 'center',
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  capital: {
-    fontSize: 14,
-    marginBottom: 2,
-  },
-  region: {
-    fontSize: 14,
-    marginBottom: 2,
-  },
-  population: {
-    fontSize: 14,
-    marginBottom: 2,
-  },
-});
-
 export default HomeScreen;
