@@ -1,71 +1,74 @@
 import { StyleSheet } from 'react-native';
 
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 20,
-      paddingHorizontal: 10,
-      alignItems: 'center',
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchInput: {
+    width: '80%',
+    padding: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10,
+    width: '100%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginBottom: 10,
+  },
+  countryCard: {
+    flexDirection: 'column',
+    padding: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  flag: {
+    width: '100%', // Aumenta a largura da imagem para 100% do país
+    height: undefined,
+    aspectRatio: 2, // Mantém a proporção da imagem
+    marginBottom: 10, // Espaço entre a imagem e o texto
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: 'center', // Centraliza o texto
+  },
+  name: {
+    fontWeight: 'bold',
+    fontSize: 18, // Aumenta o tamanho do texto
+  },
+  capital: {
+    fontSize: 16, // Aumenta o tamanho do texto
+  },
+  region: {
+    fontSize: 16, // Aumenta o tamanho do texto
+  },
+  population: {
+    fontSize: 16, // Aumenta o tamanho do texto
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
     },
-    searchInput: {
-      height: 40,
-      borderColor: '#ddd',
-      borderWidth: 1,
-      marginBottom: 10,
-      paddingHorizontal: 10,
-      borderRadius: 5,
-      width: '100%',
-      maxWidth: 500,
+    paginationButton: {
+    padding: 10,
+    marginHorizontal: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     },
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginBottom: 10,
-      width: '100%',
-      maxWidth: 500,
-    },
-    scrollViewContainer: {
-      alignItems: 'center',
-      width: '100%',
-    },
-    row: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      marginBottom: 10,
-    },
-    countryCard: {
-      backgroundColor: '#f9f9f9',
-      borderRadius: 10,
-      padding: 15,
-      marginBottom: 10,
-      alignItems: 'center',
-      marginHorizontal: 5,
-    },
-    flag: {
-      width: '100%',
-      height: 100,
-      marginBottom: 10,
-    },
-    infoContainer: {
-      alignItems: 'center',
-    },
-    name: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 5,
-    },
-    capital: {
-      fontSize: 14,
-      marginBottom: 2,
-    },
-    region: {
-      fontSize: 14,
-      marginBottom: 2,
-    },
-    population: {
-      fontSize: 14,
-      marginBottom: 2,
-    },
-  });
-  
+    });  
 export default styles;
