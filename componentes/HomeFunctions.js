@@ -1,5 +1,3 @@
-// CountryFunctions.js
-
 import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 

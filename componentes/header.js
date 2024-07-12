@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
   },
   headerText: {
-    fontFamily: 'NunitoSans-Regular', // Nome da fonte Nunito Sans regular
+    fontFamily: 'NunitoSans-Regular',
     fontSize: 16,
     fontWeight: '800',
     marginRight: '10%',

@@ -3,6 +3,18 @@ import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, useWindowD
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+const formatPopulation = (population) => {
+  if (population >= 1_000_000_000) {
+    return (population / 1_000_000_000).toFixed(1) + 'B';
+  } else if (population >= 1_000_000) {
+    return (population / 1_000_000).toFixed(1) + 'M';
+  } else if (population >= 1_000) {
+    return (population / 1_000).toFixed(1) + 'K';
+  } else {
+    return population.toString();
+  }
+};
+
 const CountryDetailsScreen = ({ route, navigation }) => {
   const { country, allCountries, currentTheme } = route.params;
   const { width: screenWidth } = useWindowDimensions(); // Get screen width
@@ -61,7 +73,7 @@ const CountryDetailsScreen = ({ route, navigation }) => {
 
         <View style={isSmallScreen ? styles.contentContainerSmallScreen : styles.contentContainerLargeScreen}>
           <View style={styles.imageContainer}>
-            <Image source={{ uri: country.flags.png }} style={[styles.flag, { width: flagWidth, height: flagHeight }]} resizeMode="contain" />
+            <Image source={{ uri: country.flags.png }} style={{ width: flagWidth, height: flagHeight }} resizeMode="contain" />
           </View>
 
           <View style={styles.infoContainer}>
@@ -75,7 +87,7 @@ const CountryDetailsScreen = ({ route, navigation }) => {
               Region: <Text style={{ fontWeight: '400' }}>{country.region}</Text>
             </Text>
             <Text style={[styles.textNormal, { color: currentTheme.color }]}>
-              Population: <Text style={{ fontWeight: '400' }}>{country.population.toLocaleString()}</Text>
+              Population: <Text style={{ fontWeight: '400' }}>{formatPopulation(country.population)}</Text>
             </Text>
             <Text style={[styles.textNormal, { color: currentTheme.color }]}>
               Currencies: <Text style={{ fontWeight: '400' }}>{currencyNames}</Text>
@@ -144,7 +156,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   flag: {
-    // width and height are dynamically set
   },
   infoContainer: {
     marginLeft: 20,

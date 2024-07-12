@@ -1,4 +1,4 @@
-import React from 'react';  // Ensure React is imported if you are using JSX
+import React from 'react';
 
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';

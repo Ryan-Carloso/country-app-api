@@ -1,12 +1,23 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
 
+const formatPopulation = (population) => {
+  if (population >= 1_000_000_000) {
+    return (population / 1_000_000_000).toFixed(1) + 'B';
+  } else if (population >= 1_000_000) {
+    return (population / 1_000_000).toFixed(1) + 'M';
+  } else if (population >= 1_000) {
+    return (population / 1_000).toFixed(1) + 'K';
+  } else {
+    return population.toString();
+  }
+};
+
 const CountryCard = ({ item, currentTheme, navigation, countries }) => {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
   const renderCountry = () => {
-    // Truncate the country name if it exceeds 15 characters
     const truncatedName = item.name.common.length > 15 ? item.name.common.substring(0, 15) + '...' : item.name.common;
 
     return (
@@ -24,14 +35,14 @@ const CountryCard = ({ item, currentTheme, navigation, countries }) => {
           style={[
             styles.countryCard,
             { backgroundColor: currentTheme.backgroundColor },
-            windowWidth > 800 ? { height: windowHeight * 0.36 } : null
+            windowWidth > 800 ? { height: windowHeight * 0.30 } : null
 
           ]}
         >
-            <View style={[
+          <View style={[
             styles.flagContainer,
-            windowWidth > 800 ? { height: windowHeight * 0.22  } : null
-            ]}>
+            windowWidth > 800 ? { height: windowHeight * 0.19  } : null
+          ]}>
             <Image
               source={{ uri: item.flags.png }}
               style={styles.flag}
@@ -50,7 +61,7 @@ const CountryCard = ({ item, currentTheme, navigation, countries }) => {
               Region: {item.region}
             </Text>
             <Text style={[styles.population, { color: currentTheme.color }]}>
-              Population: {item.population.toLocaleString()}
+              Population: {formatPopulation(item.population)}
             </Text>
           </View>
         </SafeAreaView>
@@ -71,30 +82,26 @@ const styles = StyleSheet.create({
   container: {
     margin: 5,
     justifyContent: 'center',
-    flex: 1, // Ensuring container takes up full width
+    flex: 1,
   },
   countryCard: {
     flexDirection: 'column',
     padding: 10,
     alignItems: 'center',
     marginBottom: 10,
-    width: '100%', // Garante que o cartão ocupa a largura total do contêiner
-    height: 200, // Define uma altura fixa para todos os cartões
-    backgroundColor: '#FFFFFF', // Cor de fundo do cartão
-    borderRadius: 10, // Adiciona uma curva nos cantos
-    // Sombras para Android
+    width: '100%',
+    height: 200,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
     elevation: 2,
-    // Sombras para iOS
     shadowColor: '#000000',
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },  
-  
-
   flagContainer: {
     width: '100%',
-    height: 100, // Set a fixed height for the flag container
+    height: 100, 
   },
   flag: {
     width: '100%',
@@ -104,19 +111,19 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    alignItems: 'center', // Centering text
+    alignItems: 'center',
   },
   name: {
     fontWeight: 'bold',
-    fontSize: 18, // Increasing name text size
+    fontSize: 18,
   },
   capital: {
-    fontSize: 16, // Adjusting capital text size
+    fontSize: 16,
   },
   region: {
-    fontSize: 16, // Adjusting region text size
+    fontSize: 16,
   },
   population: {
-    fontSize: 16, // Adjusting population text size
+    fontSize: 16,
   },
 });

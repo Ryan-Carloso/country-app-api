@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   animatedContainer: {
     position: 'absolute',
-    top: 60, // Adjust this value to position the floating panel below the button
+    top: 60,
     width: '70%',
     maxWidth: 300,
     padding: 10,

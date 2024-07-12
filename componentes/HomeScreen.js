@@ -21,14 +21,11 @@ const HomeScreen = ({ navigation }) => {
   const maxContainerWidth = width * 0.7;
   const windowWidth = Dimensions.get('window').width;
 
-
-  // Calcular o número máximo de colunas por linha (mínimo 1, máximo 4)
   const numColumns = Math.max(1, Math.min(4, Math.floor(maxContainerWidth / 130)));
 
-  // Calcular o número de linhas com base na altura da janela
-  const rowHeight = 250; // Aumentando a altura da linha para acomodar elementos maiores
-  const numRows = Math.max(1, Math.floor((height - 150) / rowHeight)); // 150 é um valor de buffer para outros elementos
-  const itemsPerPage = numColumns * numRows; // Itens por página baseados no número de colunas e linhas
+  const rowHeight = 245;
+  const numRows = Math.max(1, Math.floor((height - 150) / rowHeight));
+  const itemsPerPage = numColumns * numRows;
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -126,7 +123,7 @@ const HomeScreen = ({ navigation }) => {
         color: currentTheme.color,
         width: maxContainerWidth * 0.7,
         maxWidth: 250,
-        marginVertical: 10 // Adiciona espaçamento vertical ao TextInput
+        marginVertical: 10
       },
     ]}
     placeholder="Search by country name"
@@ -157,7 +154,6 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
 
-      {/* Renderização da lista de países */}
       <ScrollView style={styles.scrollView}>
         {renderGrid()}
       </ScrollView>
@@ -172,16 +168,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 20, // Ajuste conforme necessário
-    paddingHorizontal: 10, // Ajuste conforme necessário
+    paddingVertical: 20,
+    paddingHorizontal: 10,
   },
   containerheader: {
     zIndex: 100,
     flexDirection: 'row',
-    justifyContent: 'space-between', // Adicionado para espaçamento entre os elementos
-    alignItems: 'center', // Alinhamento vertical dos itens
-    paddingVertical: 10, // Espaçamento vertical entre os elementos
-    paddingHorizontal: 20, // Espaçamento horizontal entre os elementos
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   searchInput: {
     width: '100%',

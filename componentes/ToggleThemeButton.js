@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonContent: {
-    flexDirection: 'row', // Align icon and text horizontally
-    alignItems: 'center', // Center items vertically within the button
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 16,
-    marginLeft: 5, // Add spacing between icon and text
+    marginLeft: 5,
     fontFamily: 'NunitoSans-Bold'
   },
 });
