@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 const ToggleThemeButton = ({ currentTheme, toggleTheme }) => {
   return (
@@ -8,7 +8,12 @@ const ToggleThemeButton = ({ currentTheme, toggleTheme }) => {
       onPress={toggleTheme}
       activeOpacity={0.7}
     >
-      <Text style={styles.buttonText}>Toggle Theme</Text>
+      <View style={styles.buttonContent}>
+        {currentTheme.logo.icon}
+        <Text style={[styles.buttonText, { color: currentTheme.color }]}>
+          {currentTheme.logo.text}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -22,14 +27,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     alignItems: 'center',
-    shadowColor: '#000',
+    justifyContent: 'center',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
+  buttonContent: {
+    flexDirection: 'row', // Align icon and text horizontally
+    alignItems: 'center', // Center items vertically within the button
+  },
   buttonText: {
-    color: 'white',
     fontSize: 16,
+    marginLeft: 5, // Add spacing between icon and text
   },
 });

@@ -18,6 +18,8 @@ const HomeScreen = ({ navigation }) => {
   const [selectedRegion, setSelectedRegion] = useState('');
   const { width, height } = Dimensions.get('window');
   const maxContainerWidth = width * 0.7;
+  const windowWidth = Dimensions.get('window').width;
+
 
   // Calcular o número máximo de colunas por linha (mínimo 1, máximo 4)
   const numColumns = Math.max(1, Math.min(4, Math.floor(maxContainerWidth / 130)));
@@ -93,12 +95,15 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: currentTheme.backgroundColor }]}>
+    
+    <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.backgroundColor }]}>
+      <View style={[styles.containerheader, windowWidth < 600 ? { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } : null]} >
+      <Header currentTheme={currentTheme} toggleTheme={toggleTheme} />
 
       <TextInput
         style={[
           styles.searchInput,
-          { backgroundColor: currentTheme.backgroundColor, color: currentTheme.color, width: maxContainerWidth },
+          { backgroundColor: currentTheme.backgroundColor, color: currentTheme.color, width: maxContainerWidth * 0.7 },
         ]}
         placeholder="Search by country name"
         value={searchTerm}
@@ -106,13 +111,15 @@ const HomeScreen = ({ navigation }) => {
         placeholderTextColor={currentTheme.color}
       />
 
-      <ButtonContainer
+      <ButtonContainer style={{ zIndex: 100,}} 
         currentTheme={currentTheme}
         setSortOrder={setSortOrder}
         toggleTheme={toggleTheme}
         setSelectedRegion={setSelectedRegion}
         selectedRegion={selectedRegion}
       />
+      </View>
+
 
       {/* Paginação */}
       <View style={styles.paginationContainer}>
@@ -121,14 +128,14 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => setCurrentPage(currentPage - 1)}
           style={[styles.paginationButton, { backgroundColor: currentTheme.buttonBackground }]}
         >
-          <FontAwesome name="backward" size={24} color="black" />
+          <FontAwesome name="backward" size={24} color={currentTheme.color} />
         </TouchableOpacity>
         <TouchableOpacity
           disabled={(currentPage + 1) * itemsPerPage >= filterAndSortCountries().length}
           onPress={() => setCurrentPage(currentPage + 1)}
           style={[styles.paginationButton, { backgroundColor: currentTheme.buttonBackground }]}
         >
-          <FontAwesome name="forward" size={24} color="black" />
+          <FontAwesome name="forward" size={24} color={currentTheme.color} />
         </TouchableOpacity>
       </View>
 
@@ -137,7 +144,7 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView style={styles.scrollView}>
         {renderGrid()}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -150,6 +157,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 20, // Ajuste conforme necessário
     paddingHorizontal: 10, // Ajuste conforme necessário
+  },
+  containerheader: {
+    zIndex: 100,
+    flexDirection:'row',
   },
   searchInput: {
     width: '100%',

@@ -1,12 +1,24 @@
-// themes.js
+import React from 'react';  // Ensure React is imported if you are using JSX
+
+import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+
 export const lightTheme = {
-  backgroundColor: '#FFFFFF',
-  color: '#000000',
-  buttonBackground: '#DDDDDD',
+  backgroundColor: 'hsl(0, 0%, 100%)',
+  color: '#000',
+  buttonBackground: 'hsl(0, 0%, 98%)',
+  logo: {
+    icon: <Feather name="sun" size={24} color="black" />,
+    text: 'White mode'
+  }
 };
 
 export const darkTheme = {
-  backgroundColor: '#000000',
-  color: '#FFFFFF',
-  buttonBackground: '#333333',
+  backgroundColor: 'hsl(207, 26%, 17%)',
+  color: '#fff',
+  buttonBackground: 'hsl(209, 23%, 22%)',
+  logo: {
+    icon: <MaterialIcons name="dark-mode" size={24} color="white" />,
+    text: 'Dark mode'
+  }
 };
