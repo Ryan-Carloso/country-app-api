@@ -9,6 +9,7 @@ import Header from './header';
 
 
 
+
 const HomeScreen = ({ navigation }) => {
   const { currentTheme, toggleTheme } = useThemeSwitcher();
 
@@ -114,7 +115,9 @@ const HomeScreen = ({ navigation }) => {
     selectedRegion={selectedRegion}
   />
 </View>
-<TextInput
+<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+  <FontAwesome name="search" size={24} color="black" />
+  <TextInput
     style={[
       styles.searchInput,
       { 
@@ -122,6 +125,7 @@ const HomeScreen = ({ navigation }) => {
         backgroundColor: currentTheme.backgroundColor,
         color: currentTheme.color,
         width: maxContainerWidth * 0.7,
+        maxWidth: 250,
         marginVertical: 10 // Adiciona espaçamento vertical ao TextInput
       },
     ]}
@@ -130,6 +134,8 @@ const HomeScreen = ({ navigation }) => {
     onChangeText={setSearchTerm}
     placeholderTextColor={currentTheme.color}
   />
+</View>
+
 
 
       {/* Paginação */}

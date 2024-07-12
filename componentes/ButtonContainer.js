@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
+    fontFamily: 'NunitoSans-Bold'
   },
   hamburgerButton: {
     flexDirection: 'row',
@@ -112,10 +113,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    fontFamily: 'NunitoSans-Bold'
   },
   modalTitle: {
     fontSize: 18,
     marginBottom: 10,
+    fontFamily: 'NunitoSans-Bold'
   },
   regionContainer: {
     flexDirection: 'row',
@@ -132,5 +135,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    fontFamily: 'NunitoSans-Bold'
   },
 });

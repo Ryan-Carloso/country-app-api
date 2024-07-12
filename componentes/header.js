@@ -5,7 +5,7 @@ import ToggleThemeButton from './ToggleThemeButton';
 const Header = ({ currentTheme, toggleTheme }) => {
   return (
     <View style={[styles.header, { backgroundColor: currentTheme.headerBackground }]}>
-      <Text style={[styles.headerText, { color: currentTheme.color }]}>My App</Text>
+      <Text style={[styles.headerText, { color: currentTheme.color }]}>Where in the World?</Text>
       <ToggleThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
       
     </View>
@@ -21,7 +21,10 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
   },
   headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'NunitoSans-Regular', // Nome da fonte Nunito Sans regular
+    fontSize: 16,
+    fontWeight: '800',
+    marginRight: '10%',
+    width: '150%'
   },
 });

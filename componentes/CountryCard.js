@@ -24,13 +24,13 @@ const CountryCard = ({ item, currentTheme, navigation, countries }) => {
           style={[
             styles.countryCard,
             { backgroundColor: currentTheme.backgroundColor },
-            windowWidth > 800 ? { height: windowHeight * 0.35 } : null
+            windowWidth > 800 ? { height: windowHeight * 0.36 } : null
 
           ]}
         >
             <View style={[
             styles.flagContainer,
-            windowWidth > 800 ? { height: windowHeight * 0.25 } : null
+            windowWidth > 800 ? { height: windowHeight * 0.22  } : null
             ]}>
             <Image
               source={{ uri: item.flags.png }}

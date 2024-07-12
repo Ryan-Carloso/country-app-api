@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     marginLeft: 5, // Add spacing between icon and text
+    fontFamily: 'NunitoSans-Bold'
   },
 });
