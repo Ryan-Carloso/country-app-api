@@ -24,13 +24,13 @@ const CountryCard = ({ item, currentTheme, navigation, countries }) => {
           style={[
             styles.countryCard,
             { backgroundColor: currentTheme.backgroundColor },
-            windowWidth > 600 ? { height: windowHeight * 0.41 } : null
+            windowWidth > 800 ? { height: windowHeight * 0.35 } : null
 
           ]}
         >
             <View style={[
             styles.flagContainer,
-            windowWidth > 600 ? { height: windowHeight * 0.29 } : null
+            windowWidth > 800 ? { height: windowHeight * 0.25 } : null
             ]}>
             <Image
               source={{ uri: item.flags.png }}
@@ -76,14 +76,22 @@ const styles = StyleSheet.create({
   countryCard: {
     flexDirection: 'column',
     padding: 10,
-    borderRadius: 10,
     alignItems: 'center',
     marginBottom: 10,
-    borderWidth: 2,
-    borderColor: '#000000',
-    width: '100%', // Ensure card takes full width of container
-    height: 200, // Set a fixed height for all cards
-  },
+    width: '100%', // Garante que o cartão ocupa a largura total do contêiner
+    height: 200, // Define uma altura fixa para todos os cartões
+    backgroundColor: '#FFFFFF', // Cor de fundo do cartão
+    borderRadius: 10, // Adiciona uma curva nos cantos
+    // Sombras para Android
+    elevation: 2,
+    // Sombras para iOS
+    shadowColor: '#000000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+  },  
+  
+
   flagContainer: {
     width: '100%',
     height: 100, // Set a fixed height for the flag container

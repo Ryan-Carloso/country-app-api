@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 const CountryDetailsScreen = ({ route, navigation }) => {
   const { country, allCountries, currentTheme } = route.params;
@@ -16,18 +19,50 @@ const CountryDetailsScreen = ({ route, navigation }) => {
     : 'N/A';
 
   const borderCountries = country.borders 
-    ? country.borders.map(code => {
-        const borderCountry = allCountries.find(c => c.cca3 === code);
-        return (
-          <TouchableOpacity key={code} onPress={() => navigation.navigate('CountryDetails', { country: borderCountry, allCountries, currentTheme })}>
-            <Text style={[styles.link, { color: currentTheme.color }]}>{borderCountry ? borderCountry.name.common : code}</Text>
-          </TouchableOpacity>
-        );
-      })
-    : 'N/A';
+    ? (
+        <View style={styles.containerborder}>
+          {country.borders.map(code => {
+            const borderCountry = allCountries.find(c => c.cca3 === code);
+            return (
+              <TouchableOpacity 
+                style={[styles.link, { color: currentTheme.color, backgroundColor: currentTheme.backgroundColor }]} 
+                key={code} 
+                onPress={() => navigation.navigate('CountryDetails', { country: borderCountry, allCountries, currentTheme })}
+              >
+                <Text style={[styles.link, { color: currentTheme.color }]}>
+                  {borderCountry ? borderCountry.name.common : code}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      )
+    : <Text>N/A</Text>;
 
   return (
+    
     <ScrollView contentContainerStyle={[styles.container, { backgroundColor: currentTheme.backgroundColor }]}>
+      <SafeAreaView>
+
+
+        <View style={styles.rowtitle}>
+        <Text style={styles.customText}>Where in the World?</Text>
+
+
+        <TouchableOpacity style={[styles.headerButton, { borderColor: currentTheme.color }]} onPress={() => navigation.navigate('Home')}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Ionicons name="arrow-back" size={24} color="black" />
+            <Text style={[styles.headerButtonText, { color: currentTheme.color, marginLeft: 5 }]}>
+              Back
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+
+        <Text style={[styles.name, { color: currentTheme.color, marginLeft: 30, marginTop: 20,paddingVertical: 10, }]}>{country.name.common}</Text>
+
+
+      </View>
       <View style={styles.flagContainer}>
         <Image source={{ uri: country.flags.png }} style={styles.flag} resizeMode="contain" />
       </View>
@@ -40,11 +75,17 @@ const CountryDetailsScreen = ({ route, navigation }) => {
         <Text style={[styles.currencies, { color: currentTheme.color }]}>Currency Symbols: {currencySymbol}</Text>
         <Text style={[styles.nativeName, { color: currentTheme.color }]}>Native Name: {nativeName}</Text>
         <Text style={[styles.officialName, { color: currentTheme.color }]}>English Name: {officialName}</Text>
-        <Text style={[styles.borders, { color: currentTheme.color }]}>Borders: {borderCountries}</Text>
+        <Text style={[styles.borders, { color: currentTheme.color }]}>
+          <Text style={[styles.link, { color: currentTheme.color, marginBottom: 10 }]}>
+            Borders:
+          </Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+            {borderCountries}
+          </View>
+        </Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Toggle Theme" onPress={() => navigation.navigate('Home', { toggleTheme: true })} color={currentTheme.buttonBackground} />
-      </View>
+      </SafeAreaView>
+
     </ScrollView>
   );
 };
@@ -56,6 +97,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     alignItems: 'center',
   },
+  containerborder: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+  },
+  rowtitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  customText: {
+    fontFamily: 'NunitoSans-Regular', // Nome da fonte Nunito Sans regular
+    fontSize: 24,
+    fontWeight: '800',
+    marginRight: '10%'
+  },
+
   flagContainer: {
     alignItems: 'center',
     marginBottom: 20,
@@ -102,12 +159,20 @@ const styles = StyleSheet.create({
   },
   link: {
     fontSize: 16,
-    textDecorationLine: 'underline',
+    padding: 10,
+    textAlign: 'center',
+    color: 'white',
   },
-  buttonContainer: {
+  headerButton: {
     marginTop: 20,
-    width: '100%',
-    maxWidth: 300,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 20,
+  },
+  headerButtonText: {
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 

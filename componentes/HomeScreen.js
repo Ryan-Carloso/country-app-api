@@ -97,28 +97,39 @@ const HomeScreen = ({ navigation }) => {
   return (
     
     <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.backgroundColor }]}>
-      <View style={[styles.containerheader, windowWidth < 600 ? { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } : null]} >
-      <Header currentTheme={currentTheme} toggleTheme={toggleTheme} />
+      <View style={[
+  styles.containerheader,
+  windowWidth < 600 ? 
+    { flexDirection: 'column', justifyContent: 'center', alignItems: 'center', } : 
+    { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 }
+]}>
+  <Header currentTheme={currentTheme} toggleTheme={toggleTheme} />
 
-      <TextInput
-        style={[
-          styles.searchInput,
-          { backgroundColor: currentTheme.backgroundColor, color: currentTheme.color, width: maxContainerWidth * 0.7 },
-        ]}
-        placeholder="Search by country name"
-        value={searchTerm}
-        onChangeText={setSearchTerm}
-        placeholderTextColor={currentTheme.color}
-      />
-
-      <ButtonContainer style={{ zIndex: 100,}} 
-        currentTheme={currentTheme}
-        setSortOrder={setSortOrder}
-        toggleTheme={toggleTheme}
-        setSelectedRegion={setSelectedRegion}
-        selectedRegion={selectedRegion}
-      />
-      </View>
+  <ButtonContainer
+    style={{ zIndex: 100 }}
+    currentTheme={currentTheme}
+    setSortOrder={setSortOrder}
+    toggleTheme={toggleTheme}
+    setSelectedRegion={setSelectedRegion}
+    selectedRegion={selectedRegion}
+  />
+</View>
+<TextInput
+    style={[
+      styles.searchInput,
+      { 
+        borderColor: currentTheme.buttonBackground,
+        backgroundColor: currentTheme.backgroundColor,
+        color: currentTheme.color,
+        width: maxContainerWidth * 0.7,
+        marginVertical: 10 // Adiciona espaçamento vertical ao TextInput
+      },
+    ]}
+    placeholder="Search by country name"
+    value={searchTerm}
+    onChangeText={setSearchTerm}
+    placeholderTextColor={currentTheme.color}
+  />
 
 
       {/* Paginação */}
@@ -160,7 +171,11 @@ const styles = StyleSheet.create({
   },
   containerheader: {
     zIndex: 100,
-    flexDirection:'row',
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Adicionado para espaçamento entre os elementos
+    alignItems: 'center', // Alinhamento vertical dos itens
+    paddingVertical: 10, // Espaçamento vertical entre os elementos
+    paddingHorizontal: 20, // Espaçamento horizontal entre os elementos
   },
   searchInput: {
     width: '100%',

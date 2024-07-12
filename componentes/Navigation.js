@@ -19,15 +19,8 @@ const Navigation = () => {
         <Stack.Screen
           name="CountryDetails"
           component={CountryDetailsScreen}
-          options={{
-            headerStyle: { 
-              backgroundColor: 'black',
-              borderBottomWidth: 0, // Removes the bottom border line
+          options={{ headerShown: false }} // Remove o cabeçalho para esta tela
 
-            }, // Header background color
-            headerTintColor: 'white', // Header text color
-            cardStyle: { backgroundColor: 'black' }, // Screen background color
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

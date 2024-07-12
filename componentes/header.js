@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ToggleThemeButton from './ToggleThemeButton';
-import ButtonContainer from './ButtonContainer';
 
 const Header = ({ currentTheme, toggleTheme }) => {
   return (
