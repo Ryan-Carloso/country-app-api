@@ -8,6 +8,7 @@ import CountryCard from './CountryCard';
 import Header from './header';
 
 
+
 const HomeScreen = ({ navigation }) => {
   const { currentTheme, toggleTheme } = useThemeSwitcher();
 
@@ -63,6 +64,7 @@ const HomeScreen = ({ navigation }) => {
     return filteredCountries;
   };
 
+
   const renderGrid = () => {
     const filteredCountries = filterAndSortCountries();
     const startIndex = currentPage * itemsPerPage;
@@ -82,6 +84,7 @@ const HomeScreen = ({ navigation }) => {
               navigation={navigation}
               countries={countries}
             />
+
           ))}
         </View>
       );
@@ -129,6 +132,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
+
       {/* Renderização da lista de países */}
       <ScrollView style={styles.scrollView}>
         {renderGrid()}
@@ -154,6 +158,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
   },
+
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
