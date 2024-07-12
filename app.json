@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "countryapp",
-    "slug": "countryapp",
-    "version": "1.0.0",
+    "name": "Where in the World",
+    "slug": "Where-in-the-world",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,10 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ryancarlos1.Whereintheworld"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c133f881-58b1-46d0-8c0f-128053b644bf"
+      }
     }
   }
 }

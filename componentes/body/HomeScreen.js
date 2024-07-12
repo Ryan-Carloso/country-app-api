@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Dimensions, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import useThemeSwitcher from './useThemeSwitcher'; // Ajuste o caminho conforme necessário
-import ButtonContainer from './ButtonContainer';
+import useThemeSwitcher from '../useThemeSwitcher'; // Ajuste o caminho conforme necessário
+import ButtonContainer from '../Header/ButtonContainer';
 import CountryCard from './CountryCard';
-import Header from './header';
+import Header from '../Header/header';
 
 
 
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
   const numColumns = Math.max(1, Math.min(4, Math.floor(maxContainerWidth / 130)));
 
-  const rowHeight = 245;
+  const rowHeight = 250;
   const numRows = Math.max(1, Math.floor((height - 150) / rowHeight));
   const itemsPerPage = numColumns * numRows;
 
@@ -112,26 +112,29 @@ const HomeScreen = ({ navigation }) => {
     selectedRegion={selectedRegion}
   />
 </View>
-<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-  <FontAwesome name="search" size={24} color="black" />
-  <TextInput
-    style={[
-      styles.searchInput,
-      { 
-        borderColor: currentTheme.buttonBackground,
-        backgroundColor: currentTheme.backgroundColor,
-        color: currentTheme.color,
-        width: maxContainerWidth * 0.7,
-        maxWidth: 250,
-        marginVertical: 10
-      },
-    ]}
-    placeholder="Search by country name"
-    value={searchTerm}
-    onChangeText={setSearchTerm}
-    placeholderTextColor={currentTheme.color}
-  />
-</View>
+<View style={[
+        styles.searchContainer,
+        {
+          borderColor: currentTheme.backgroundColor,
+          backgroundColor: currentTheme.buttonBackground,
+        },
+      ]}>
+        <FontAwesome name="search" size={24} color={currentTheme.color}/>
+        <TextInput
+          style={[
+            styles.searchInput,
+            {
+              color: currentTheme.color,
+              width: maxContainerWidth * 0.4,
+              maxWidth: 200,
+            },
+          ]}
+          placeholder="Search by country name"
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+          placeholderTextColor={currentTheme.color}
+        />
+      </View>
 
 
 
@@ -180,11 +183,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   searchInput: {
-    width: '100%',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
+    flex: 1,
+    height: 40,
+    marginLeft: 5,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 
   row: {

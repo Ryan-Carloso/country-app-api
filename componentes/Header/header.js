@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ToggleThemeButton from './ToggleThemeButton';
+import ToggleThemeButton from '../ToggleThemeButton';
 
 const Header = ({ currentTheme, toggleTheme }) => {
   return (
@@ -25,6 +25,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '800',
     marginRight: '10%',
-    width: '150%'
   },
 });
